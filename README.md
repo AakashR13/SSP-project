@@ -1,68 +1,117 @@
 # SSP-project
-LID using prosodic features (syllable level)
 
-This projects implements LID(Language Identification) using solely prosody features on the syllable level.
-Steps to run the code:
+Language Identification (LID) using prosodic features at the syllable level.
 
-1. Take the dataset and convert .wav to .mat using prosody.m (You will need to change the name of mat file manually)
-2. Place the code into the below folder structure
-3. Run the code using GMM.ipynb
+![Language Distribution](https://img.shields.io/badge/Jupyter-80.5%25-orange) ![MATLAB](https://img.shields.io/badge/MATLAB-19.5%25-blue)
 
+## Overview
 
-Code Structure:
+This project implements **Language Identification (LID)** using solely prosodic features on the syllable level. The system identifies languages based on prosodic characteristics extracted from audio signals.
 
-testdata________                    _____ 
-          |
-          |_____    Language Folders_____       languageN.mat
-          |
-          |_____                    _____
+## Features
 
-    testdata is the folder where the test data is placed. The code will automatically read the test data from this folder. It must be in the 
-    .mat format. Each file is placed in its respective format with the naming convention being languageN.mat where language is its language and N is the serial number.
+- 🎵 **Prosodic Feature Extraction** - Syllable-level prosody features
+- 🗣️ **Language Identification** - Multi-language LID system
+- 📊 **GMM Implementation** - Gaussian Mixture Model for classification
+- 🔬 **MATLAB Processing** - Audio feature extraction in MATLAB
+- 📓 **Jupyter Notebook** - Main implementation and analysis
 
-traindata_______                    _____ 
-          |
-          |_____    Language Folders_____       languageN.mat
-          |
-          |_____                    _____
-    
-    traindata is the folder where the train data is placed. The code will automatically read the train data from this folder. It must be in the
-    .mat format. Each file is placed in its respective format with the naming convention being languageN.mat where language is its language and N is the serial number.
+## Requirements
 
-GMM.ipynb
+- **MATLAB** - For audio processing and feature extraction
+- **Python** - For GMM implementation
+- **Jupyter Notebook** - For running the main code
+- **NumPy, SciPy, scikit-learn** - Python dependencies
 
-    This is the main code file. It contains the code for the GMM implementation.
+## Project Structure
 
-prosody.m
+```
+SSP-project/
+├── feat/              # Extracted features (auto-generated)
+│   ├── test/         # Test features
+│   └── train/        # Training features
+├── testdata/         # Test audio data (.mat files)
+├── traindata/        # Training audio data (.mat files)
+├── trained_model/    # Trained GMM models (.pkl files)
+├── temp/             # Temporary files
+├── GMM.ipynb         # Main implementation
+├── prosody.m          # Prosody feature extraction
+├── VOP.m              # Syllable boundary detection
+├── voiced.m           # Voiced/unvoiced detection
+├── freq.m             # Fundamental frequency extraction
+├── mat_test.ipynb     # MATLAB testing
+├── Output.json        # Results output
+└── ssp.pdf            # Project documentation
+```
 
-    This is the code which extract the prosody syllable level features  from the .wav file. It is used to convert the .wav file to .mat file.
+## Usage
 
-VOP.m
+### Step 1: Convert Audio to Features
 
-    This is the code which extract the syllable boundary information from the .wav file.
+1. Convert `.wav` files to `.mat` format using `prosody.m`
+   - Note: You may need to change the mat file name manually
 
-voiced.m
+### Step 2: Organize Data
 
-    This is the code which extract the voiced/unvoiced information from the .wav file.
+Place your data in the following structure:
 
-freq.m
+**Test Data:**
+```
+testdata/
+├── Language1/
+│   ├── language1_1.mat
+│   ├── language1_2.mat
+│   └── ...
+├── Language2/
+│   └── ...
+```
 
-    This is the code which extract the fundamental frequency information from the .wav file.
+**Train Data:**
+```
+traindata/
+├── Language1/
+│   ├── language1_1.mat
+│   ├── language1_2.mat
+│   └── ...
+├── Language2/
+│   └── ...
+```
 
-The code will automatically create the following folders:
+### Step 3: Run the Code
 
+1. Open `GMM.ipynb` in Jupyter Notebook
+2. Run all cells to:
+   - Extract features from test/train data
+   - Train GMM models for each language
+   - Generate predictions and output
 
-feat____________test______ Language_all_features.txt
-         |______train_____ Language_all_features.txt
+### Step 4: View Results
 
-    feat is the folder where the features are stored. The code will automatically create this folder. It will also create the test and train
+- Trained models are saved in `trained_model/` as `.pkl` files
+- Features are stored in `feat/test/` and `feat/train/`
+- Results are output to `Output.json`
 
-train
+## Code Files
 
-trained_model____Language.pkl
+- **`GMM.ipynb`** - Main GMM implementation for language identification
+- **`prosody.m`** - Extracts prosody syllable-level features from `.wav` files
+- **`VOP.m`** - Extracts syllable boundary information
+- **`voiced.m`** - Extracts voiced/unvoiced information
+- **`freq.m`** - Extracts fundamental frequency information
+- **`mat_test.ipynb`** - MATLAB testing notebook
 
-    trained_model is the folder where the trained model is stored. The code will automatically create this folder. For each language a separate language.pkl file will be created.
+## Language Distribution
 
+- **Jupyter Notebook**: 80.5% - Main implementation and analysis
+- **MATLAB**: 19.5% - Audio processing and feature extraction
 
+## Documentation
 
-    All of the above files are refreshed every time the code is run. No need to place any files in the above folders.
+See `ssp.pdf` for detailed project documentation and methodology.
+
+## License
+
+This project is licensed under the **MIT License**.
+
+See the [LICENSE](https://github.com/AakashR13/SSP-project/blob/main/LICENSE) file in the repository for full license details.
+
